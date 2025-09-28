@@ -1,0 +1,9 @@
+/* 
+  main.css 
+  Contains global styles for the application (styles shared across the entire app)
+*/
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+}

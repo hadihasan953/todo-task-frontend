@@ -1,7 +1,8 @@
-import "./style.css";
+/* 
+  main.ts 
+  Entry point of the application
+  Initializes the app and imports global styles
+*/
 
-const button = document.getElementById("clickMe");
-
-button?.addEventListener("click", () => {
-  alert("Clicked with Vite + TypeScript!");
-});
+import "./main.css";
+import "./typescript/login"
