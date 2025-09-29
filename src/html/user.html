@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Dashboard | To-Do App</title>
+    <link rel="stylesheet" href="../css/user.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <h2>User Dashboard</h2>
+        <button id="userLogoutBtn" onclick="logout()">Logout</button>
+        <section>
+            <h3>My Tasks</h3>
+            <div id="kanbanBoard" class="kanban-board">
+                <div class="kanban-column" data-status="pending">
+                    <h4>Pending</h4>
+                    <div class="kanban-list" id="col-pending"></div>
+                </div>
+                <div class="kanban-column" data-status="in-progress">
+                    <h4>In Progress</h4>
+                    <div class="kanban-list" id="col-in-progress"></div>
+                </div>
+                <div class="kanban-column" data-status="completed">
+                    <h4>Completed</h4>
+                    <div class="kanban-list" id="col-completed"></div>
+                </div>
+            </div>
+            <section style="margin-top:16px;">
+                <h3>Create Task</h3>
+                <button type="button" id="goToTaskCreator" class="small-btn">Create Task</button>
+            </section>
+        </section>
+    </div>
+    <script type="module" src="../typescript/user.ts"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const goToTaskCreator = document.getElementById('goToTaskCreator');
+            if (goToTaskCreator) {
+                goToTaskCreator.addEventListener('click', function () {
+                    window.location.href = 'taskCreator.html';
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

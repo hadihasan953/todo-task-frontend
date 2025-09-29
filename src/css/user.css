@@ -1,0 +1,112 @@
+body {
+    background: #f6fafd;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.dashboard-container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 32px 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    position: relative;
+}
+
+.dashboard-container h2 {
+    color: #a6c000;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+section {
+    margin-bottom: 32px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+th,
+td {
+    border: 1px solid #bcd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background: #e3f0ff;
+}
+
+button {
+    padding: 6px 12px;
+    background: #a6c000;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #8ea000;
+}
+
+button#createTaskBtn:hover,
+button#goToTaskCreator:hover {
+    background: #0074d9;
+    color: #fff;
+}
+
+.kanban-board {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.kanban-column {
+    flex: 1;
+    background: #f4f6f8;
+    padding: 8px;
+    border-radius: 6px;
+    min-height: 300px;
+    border: 5px solid #a6c000;
+}
+
+.kanban-column h4 {
+    margin: 4px 0 8px 0;
+}
+
+.kanban-list {
+    height: 100%;
+}
+
+.task-card {
+    background: #fff;
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    cursor: grab;
+}
+
+.task-card.dragging {
+    opacity: 0.5;
+}
+
+.task-card button {
+    margin-top: 6px;
+}
+
+#userLogoutBtn {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 1;
+}
+
+#userLogoutBtn:hover {
+    background: #c00;
+    color: #fff;
+}

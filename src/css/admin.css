@@ -1,0 +1,139 @@
+.admin-btn-group button.logout-btn:hover,
+.admin-btn-group button:nth-child(3):hover {
+    background: #c00;
+    color: #fff;
+}
+
+/* Individual hover colors for each admin dashboard button */
+.admin-btn-group button:first-child:hover {
+    background: #ffd600;
+    color: #222;
+}
+
+.admin-btn-group button:nth-child(2):hover {
+    background: #0074d9;
+    color: #fff;
+}
+
+/* Center and stack admin dashboard buttons vertically */
+.admin-btn-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.admin-btn-group button {
+    width: 200px;
+    margin: 0;
+    background: #00FF00;
+    color: #222;
+    border: none;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+#viewUpdateTasksBtn:hover {
+    background: #FFA500 !important;
+    color: #222 !important;
+}
+
+.admin-btn-group button:hover {
+    background: #00cc00;
+    color: #222;
+}
+
+body {
+    background: #f6fafd;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.dashboard-container {
+    width: 500px;
+    height: 300px;
+    margin: 40px auto;
+    background: #fff;
+    border: 10px solid #00FF00;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0;
+}
+
+
+
+.dashboard-container h2 {
+    color: #00FF00;
+    margin-bottom: 24px;
+}
+
+section {
+    margin-bottom: 32px;
+}
+
+form input,
+form select {
+    margin: 10px 8px 10px 0;
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #bcd;
+    font-size: 16px;
+    width: 100%;
+    max-width: 400px;
+}
+
+form input:focus,
+form select:focus {
+    border-color: #2a5d9f;
+    outline: none;
+}
+
+
+form button {
+    padding: 12px 24px;
+    background: #2a5d9f;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form button:hover {
+    background: #174a7c;
+}
+
+form button:hover {
+    background: #174a7c;
+}
+
+.msg {
+    color: #c00;
+    margin-top: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+th,
+td {
+    border: 1px solid #bcd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background: #e3f0ff;
+}

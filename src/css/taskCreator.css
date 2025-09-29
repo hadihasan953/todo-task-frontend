@@ -1,0 +1,260 @@
+.user-picker .small-btn {
+    background: #0074d9;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    margin: 4px 2px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.user-picker .small-btn:hover {
+    background: #00FF00;
+    color: #222;
+}
+
+#openUserPicker:hover,
+form button[type="submit"]:hover {
+    background: #00FF00;
+    color: #222;
+}
+
+#openUserPicker {
+    background: #0074d9;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    transition: background 0.2s;
+}
+
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form input,
+form select,
+#openUserPicker,
+form button[type="submit"] {
+    margin: 10px 0 0 0;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    display: block;
+}
+
+form button[type="submit"] {
+    background: #0074d9;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    transition: background 0.2s;
+}
+
+
+/* Back to Admin Dashboard button styles */
+.back-admin-btn {
+    display: block;
+    width: 220px;
+    margin: 24px auto 0 auto;
+    padding: 12px 0;
+    background: #c00;
+    color: #fff;
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.back-admin-btn:hover {
+    background: #a30000;
+    color: #fff;
+}
+
+form input:focus,
+form select:focus {
+    border-color: #0074d9;
+    outline: none;
+}
+
+/* Styles specific to taskCreator.html */
+body {
+    background: #f6fafd;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard-container {
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 32px 24px;
+    border-radius: 12px;
+    border: 10px solid #0074d9;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form input,
+form select,
+#openUserPicker,
+form button[type="submit"] {
+    form button[type="submit"]:hover {
+        background: #005fa3;
+        color: #fff;
+        margin: 10px 0 0 0;
+        width: 100%;
+        max-width: 400px;
+        box-sizing: border-box;
+        display: block;
+    }
+
+    form input {
+        height: 48px;
+    }
+
+    #openUserPicker {
+        padding: 12px 24px;
+        background: #0074d9;
+        color: #222;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background 0.2s;
+    }
+
+    .back-admin-btn:hover {
+        background: #a30000;
+    }
+}
+
+#openUserPicker:hover {
+    background: #00FF00;
+    color: #222;
+}
+
+
+form input,
+form select {
+    margin: 10px 0;
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #bcd;
+    font-size: 16px;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    display: block;
+}
+
+form button {
+    padding: 12px 24px;
+    background: #2a5d9f;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.msg {
+    color: #c00;
+    margin-top: 8px;
+}
+
+/* User picker boxed items */
+.user-picker .picker-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border: 1px solid #e6e6e6;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    background: #fafafa;
+}
+
+.user-picker .picker-item .user-id {
+    font-weight: 700;
+    color: #333;
+    min-width: 36px;
+    text-align: center;
+    background: #fff;
+    border-radius: 4px;
+    padding: 2px 6px;
+    border: 1px solid #ddd;
+}
+
+.user-picker .picker-item .user-name {
+    color: #222;
+}
+
+.small-btn {
+    margin-left: 8px;
+    padding: 6px 8px;
+}
+
+/* checkbox and label styles inside picker */
+.picker-item input[type="checkbox"] {
+    transform: scale(1.05);
+    margin-right: 8px;
+}
+
+.picker-item .user-label {
+    color: #222;
+    font-size: 15px;
+}
+
+/* Picker panel layout */
+#userPicker {
+    display: none;
+    /* hidden by default; JS toggles */
+    border: 1px solid #ccc;
+    padding: 8px;
+    margin-top: 6px;
+    max-height: 240px;
+    overflow: auto;
+    background: #fff;
+    position: relative;
+    /* ensure it stays in flow and doesn't float over buttons */
+    z-index: 1;
+}
+
+.user-picker .controls {
+    margin-top: 8px;
+}

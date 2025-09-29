@@ -1,0 +1,108 @@
+/* Back to Admin Dashboard button styles */
+.back-admin-btn {
+    display: block;
+    width: 220px;
+    margin: 24px auto 0 auto;
+    padding: 12px 0;
+    background: #c00;
+    color: #fff;
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.back-admin-btn:hover {
+    background: #a30000;
+}
+
+form input:focus,
+form select:focus {
+    border-color: #00FF00;
+    outline: none;
+}
+
+form button:hover {
+    background: #00FF00;
+    color: #fff;
+}
+
+/* Center the form in a rectangle box */
+.user-form-container {
+    width: 400px;
+    height: 450px;
+    margin: 60px auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    border: 10px solid #ffd600;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Styles for userCreator.html (copied from adminDashboard common form styles) */
+body {
+    background: #f6fafd;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    color: #ffd600;
+}
+
+form input,
+form select {
+    margin: 10px 8px 10px 0;
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #bcd;
+    font-size: 16px;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+form select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #fff url('data:image/svg+xml;utf8,<svg fill="%232a5d9f" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 12px center/20px 20px;
+    padding-right: 40px;
+}
+
+form button {
+    padding: 12px 24px;
+    background: #ffd600;
+    color: #222;
+    font-weight: bold;
+    transition: background 0.2s;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.msg {
+    color: #c00;
+    margin-top: 8px;
+}

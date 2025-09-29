@@ -1,0 +1,72 @@
+.upde-container {
+    width: 700px;
+    margin: 40px auto;
+    background: #fff;
+    border: 8px solid #FFA500;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    padding: 32px 24px;
+}
+
+#tasksSection {
+    background: #f9f9f9;
+    border: 2px solid #FFA500;
+    border-radius: 8px;
+    padding: 24px 16px 16px 16px;
+    margin-top: 24px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+#tasksTable {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    margin-top: 12px;
+    font-size: 1rem;
+}
+
+#tasksTable th,
+#tasksTable td {
+    border: 1px solid #e0e0e0;
+    padding: 8px 10px;
+    text-align: left;
+}
+
+#tasksTable th {
+    background: #FFA500;
+    color: #111;
+    font-weight: bold;
+}
+
+#tasksTable tr:nth-child(even) {
+    background: #fff7e6;
+}
+
+#tasksTable tr:hover {
+    background: #ffd699;
+}
+
+#tasksTable button {
+    color: #111;
+    background: #ff851b;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 10px;
+    margin-right: 4px;
+    cursor: pointer;
+    font-size: 0.95em;
+    transition: background 0.2s;
+}
+
+#tasksTable button:hover {
+    background: #ff6300;
+}
+
+#tasksMsg {
+    margin-top: 8px;
+    color: #c00;
+    text-align: center;
+    color: #111;
+    font-size: 1em;
+}

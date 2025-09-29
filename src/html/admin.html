@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard | To-Do App</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <h2>Welcome admin <span id="adminName">{name}</span>, with id <span id="adminId">{id}</span></h2>
+        <div class="admin-btn-group">
+            <button onclick="window.location.href='userCreator.html'">User Creator</button>
+            <button onclick="window.location.href='taskCreator.html'">Task Creator</button>
+            <button onclick="window.location.href='up&de.html'" id="viewUpdateTasksBtn">View & Update Tasks</button>
+            <button id="adminLogoutBtn" class="logout-btn">Logout</button>
+        </div>
+
+    </div>
+    <script type="module" src="../typescript/admin.ts"></script>
+</body>
+
+</html>

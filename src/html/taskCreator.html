@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Task Creator</title>
+    <link rel="stylesheet" href="../css/taskCreator.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <h1>Create Task</h1>
+        <form id="taskForm">
+            <input type="text" id="taskTitle" placeholder="Title" required><br>
+            <input type="text" id="taskDesc" placeholder="Description" required><br>
+            <button type="button" id="openUserPicker" class="small-btn">Assign to</button>
+            <br>
+            <div id="userPicker" class="user-picker">
+                <div id="userPickerList"></div>
+                <div class="controls">
+                    <button type="button" id="selectAllUsers" class="small-btn">Select all</button>
+                    <button type="button" id="clearAllUsers" class="small-btn">Clear</button>
+                    <button type="button" id="doneUserPicker" class="small-btn">Done</button>
+                </div>
+            </div>
+            <button type="submit">Create Task</button>
+            <div id="taskMsg" class="msg"></div>
+        </form>
+    </div>
+    <a href="admin.html" class="back-admin-btn">Back to Admin Dashboard</a>
+    <script type="module" src="../typescript/taskCreator.ts"></script>
+</body>
+
+</html>
