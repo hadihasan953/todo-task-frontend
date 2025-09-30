@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderTasks(tasks, token);
     } catch (err) {
         const msg = document.getElementById('tasksMsg');
-        if (msg) msg.textContent = err.message || 'Failed to load tasks.';
+        if (msg) msg.textContent = (err instanceof Error ? err.message : 'Failed to load tasks.');
     }
 });
 const API_BASE = 'http://localhost:3000/api/v1';
