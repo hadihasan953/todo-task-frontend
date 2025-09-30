@@ -49,6 +49,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (span) span.textContent = id;
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const logoutBtn = document.getElementById('adminLogoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function () {
+            localStorage.removeItem('token');
+            localStorage.removeItem('role');
+            localStorage.removeItem('userId');
+            localStorage.removeItem('name');
+            window.location.replace('login.html'); // Use replace to prevent back navigation
+        });
+    }
+});
+
 // On page load, fetch users and tasks and log them
 // document.addEventListener('DOMContentLoaded', () => {
 //     const token = localStorage.getItem('token') || '';
@@ -59,3 +72,4 @@ document.addEventListener('DOMContentLoaded', () => {
 //         .then(tasks => console.log('Tasks:', tasks))
 //         .catch(err => console.error('Error fetching tasks:', err));
 // });
+

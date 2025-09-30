@@ -9,7 +9,7 @@
 </head>
 
 <body>
-<div class="login-container">
+    <div class="login-container">
         <h2>Login</h2>
         <form id="loginForm">
             <input type="email" id="email" placeholder="Email" required>
@@ -20,6 +20,14 @@
     </div>
 
     <script type="module" src="../typescript/login.ts"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            localStorage.removeItem('token');
+            localStorage.removeItem('role');
+            localStorage.removeItem('userId');
+            localStorage.removeItem('name');
+        });
+    </script>
 </body>
 
 </html>

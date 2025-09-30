@@ -27,8 +27,31 @@
             <div id="taskMsg" class="msg"></div>
         </form>
     </div>
-    <a href="admin.html" class="back-admin-btn">Back to Admin Dashboard</a>
+    <a id="backDashboardBtn" href="#" class="back-admin-btn">Back to Dashboard</a>
     <script type="module" src="../typescript/taskCreator.ts"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const btn = document.getElementById('backDashboardBtn');
+            const role = localStorage.getItem('role');
+            if (btn) {
+                if (role === 'admin') {
+                    btn.textContent = 'Back to Admin Dashboard';
+                    btn.href = 'admin.html';
+                } else {
+                    btn.textContent = 'Back to User Dashboard';
+                    btn.href = 'user.html';
+                }
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.replace('login.html');
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -9,7 +9,7 @@ interface User {
 const API_BASE = 'http://localhost:3000/api/v1';
 
 async function createUser(user: Omit<User, 'id'>, token: string): Promise<User> {
-    const res = await fetch(`${API_BASE}/user`, {
+    const res = await fetch(`${API_BASE}/user/register`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

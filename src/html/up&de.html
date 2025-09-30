@@ -29,6 +29,14 @@
         </div>
     </div>
     <script type="module" src="../typescript/up&de.ts"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.replace('login.html');
+            }
+        });
+    </script>
 </body>
 
 </html>

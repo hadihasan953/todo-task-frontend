@@ -19,6 +19,14 @@
 
     </div>
     <script type="module" src="../typescript/admin.ts"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
 </body>
 
 </html>

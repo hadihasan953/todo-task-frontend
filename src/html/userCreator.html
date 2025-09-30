@@ -25,6 +25,14 @@
     </div>
     <a href="admin.html" class="back-admin-btn">Back to Admin Dashboard</a>
     <script type="module" src="../typescript/userCreator.ts"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.replace('login.html');
+            }
+        });
+    </script>
 </body>
 
 </html>

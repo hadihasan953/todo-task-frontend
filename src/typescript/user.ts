@@ -1,4 +1,3 @@
-
 interface User {
     id?: number;
     name: string;
@@ -23,25 +22,109 @@ export async function createUser(user: Omit<User, 'id'>, token?: string): Promis
 }
 
 
-// If you have a user form, you can wire it up like this:
-// document.addEventListener('DOMContentLoaded', () => {
-//     const form = document.getElementById('userForm') as HTMLFormElement | null;
-//     const msg = document.getElementById('userMsg');
-//     if (!form) return;
-//     form.addEventListener('submit', async (e) => {
-//         e.preventDefault();
-//         if (msg) msg.textContent = '';
-//         const name = (document.getElementById('userName') as HTMLInputElement).value.trim();
-//         const email = (document.getElementById('userEmail') as HTMLInputElement).value.trim();
-//         const password = (document.getElementById('userPassword') as HTMLInputElement).value.trim();
-//         const role = (document.getElementById('userRole') as HTMLSelectElement).value;
-//         const token = localStorage.getItem('token') || '';
-//         try {
-//             await createUser({ name, email, password, role }, token);
-//             if (msg) msg.textContent = 'User created successfully!';
-//             form.reset();
-//         } catch (err: any) {
-//             if (msg) msg.textContent = err.message || 'Failed to create user.';
-//         }
-//     });
-// });
+
+// Kanban board: fetch and render tasks assigned to or created by the user
+interface Task {
+    id: number;
+    title: string;
+    description: string;
+    status: string;
+    createdBy?: number;
+}
+
+async function fetchUserTasks(token: string): Promise<Task[]> {
+    const res = await fetch(`${API_BASE}/task/get`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (!res.ok) throw new Error('Failed to fetch tasks');
+    const result = await res.json();
+    return result.data;
+}
+
+async function updateTaskStatus(taskId: number, status: string, token: string) {
+    const res = await fetch(`${API_BASE}/task/update/${taskId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ status })
+    });
+    if (!res.ok) throw new Error('Failed to update task status');
+    return res.json();
+}
+
+function renderKanban(tasks: Task[], token: string) {
+    const pendingCol = document.getElementById('col-pending');
+    const inProgressCol = document.getElementById('col-in-progress');
+    const completedCol = document.getElementById('col-completed');
+    if (!pendingCol || !inProgressCol || !completedCol) return;
+    pendingCol.innerHTML = '';
+    inProgressCol.innerHTML = '';
+    completedCol.innerHTML = '';
+    tasks.forEach(task => {
+        const el = document.createElement('div');
+        el.className = 'kanban-task';
+        el.draggable = true;
+        el.dataset.taskId = String(task.id);
+        el.innerHTML = `<strong>${task.title}</strong><br><span>${task.description || ''}</span>`;
+        el.addEventListener('dragstart', (e) => {
+            (e.dataTransfer as DataTransfer).setData('text/plain', String(task.id));
+        });
+        // Use userCompleted logic
+        const isCompleteForUser = task.status === "completed" || (task as any).userCompleted === true;
+        if (isCompleteForUser) {
+            completedCol.appendChild(el);
+        } else if (task.status === 'in-progress') {
+            inProgressCol.appendChild(el);
+        } else {
+            pendingCol.appendChild(el);
+        }
+    });
+    // Set up drop zones
+    [
+        { col: pendingCol, status: 'pending' },
+        { col: inProgressCol, status: 'in-progress' },
+        { col: completedCol, status: 'completed' }
+    ].forEach(({ col, status }) => {
+        col.ondragover = (e) => { e.preventDefault(); };
+        col.ondrop = async (e) => {
+            e.preventDefault();
+            const taskId = Number((e.dataTransfer as DataTransfer).getData('text/plain'));
+            try {
+                await updateTaskStatus(taskId, status, token);
+                // Re-fetch and re-render tasks
+                const tasks = await fetchUserTasks(token);
+                renderKanban(tasks, token);
+            } catch (err) {
+                alert('Failed to update task status');
+            }
+        };
+    });
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const token = localStorage.getItem('token') || '';
+    try {
+        const tasks = await fetchUserTasks(token);
+        renderKanban(tasks, token);
+    } catch (err) {
+        // Optionally show error in UI
+        const pendingCol = document.getElementById('col-pending');
+        if (pendingCol) pendingCol.innerHTML = '<span style="color:red;">Failed to load tasks</span>';
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const logoutBtn = document.getElementById('userLogoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function () {
+            localStorage.removeItem('token');
+            localStorage.removeItem('role');
+            localStorage.removeItem('userId');
+            localStorage.removeItem('name');
+            window.location.href = 'login.html';
+        });
+    }
+});
+
