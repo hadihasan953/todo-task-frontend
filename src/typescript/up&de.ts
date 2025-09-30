@@ -1,3 +1,34 @@
+// Fetch all users for assignment dropdown
+async function fetchUsers(token: string): Promise<{ id: number, username: string }[]> {
+    const res = await fetch(`${API_BASE}/users`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (!res.ok) throw new Error('Failed to fetch users');
+    const result = await res.json();
+    return result.data;
+}
+
+// Add assignment dropdown to task creation form
+document.addEventListener('DOMContentLoaded', async () => {
+    const token = localStorage.getItem('token') || '';
+    // ...existing code...
+    // Add user assignment dropdown to task creation form if present
+    const assignSelect = document.getElementById('assignUsers') as HTMLSelectElement;
+    if (assignSelect) {
+        try {
+            const users = await fetchUsers(token);
+            assignSelect.innerHTML = '';
+            users.forEach(user => {
+                const option = document.createElement('option');
+                option.value = String(user.id);
+                option.textContent = user.username;
+                assignSelect.appendChild(option);
+            });
+        } catch (err) {
+            assignSelect.innerHTML = '<option>Failed to load users</option>';
+        }
+    }
+});
 // Fetch and render tasks on page load
 document.addEventListener('DOMContentLoaded', async () => {
     const token = localStorage.getItem('token') || '';
