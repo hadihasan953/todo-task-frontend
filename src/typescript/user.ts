@@ -54,6 +54,25 @@ async function updateTaskStatus(taskId: number, status: string, token: string) {
     return res.json();
 }
 
+// Track individual user completion (stores in localStorage for now)
+function markTaskCompleteForUser(taskId: number, completed: boolean) {
+    const userId = localStorage.getItem('userId');
+    if (!userId) return;
+
+    const userCompletions = JSON.parse(localStorage.getItem(`userCompletions_${userId}`) || '{}');
+    userCompletions[taskId] = completed;
+    localStorage.setItem(`userCompletions_${userId}`, JSON.stringify(userCompletions));
+}
+
+// Check if current user has completed a task
+function isTaskCompleteForUser(taskId: number): boolean {
+    const userId = localStorage.getItem('userId');
+    if (!userId) return false;
+
+    const userCompletions = JSON.parse(localStorage.getItem(`userCompletions_${userId}`) || '{}');
+    return userCompletions[taskId] === true;
+}
+
 function renderKanban(tasks: Task[], token: string) {
     const pendingCol = document.getElementById('col-pending');
     const inProgressCol = document.getElementById('col-in-progress');
@@ -71,8 +90,8 @@ function renderKanban(tasks: Task[], token: string) {
         el.addEventListener('dragstart', (e) => {
             (e.dataTransfer as DataTransfer).setData('text/plain', String(task.id));
         });
-        // Use userCompleted logic
-        const isCompleteForUser = task.status === "completed" || (task as any).userCompleted === true;
+        // Check if this user has individually completed the task
+        const isCompleteForUser = isTaskCompleteForUser(task.id);
         if (isCompleteForUser) {
             completedCol.appendChild(el);
         } else if (task.status === 'in-progress') {
@@ -92,10 +111,26 @@ function renderKanban(tasks: Task[], token: string) {
             e.preventDefault();
             const taskId = Number((e.dataTransfer as DataTransfer).getData('text/plain'));
             try {
-                await updateTaskStatus(taskId, status, token);
-                // Re-fetch and re-render tasks
-                const tasks = await fetchUserTasks(token);
-                renderKanban(tasks, token);
+                if (status === 'completed') {
+                    // Mark as completed for this user only (doesn't change main task status)
+                    markTaskCompleteForUser(taskId, true);
+                    // Just re-render, no need to fetch from server
+                    renderKanban(tasks, token);
+                } else if (status === 'pending') {
+                    // Remove user's completion and update main task status
+                    markTaskCompleteForUser(taskId, false);
+                    await updateTaskStatus(taskId, status, token);
+                    // Re-fetch and re-render tasks
+                    const newTasks = await fetchUserTasks(token);
+                    renderKanban(newTasks, token);
+                } else {
+                    // For in-progress, update main task status and remove user completion
+                    markTaskCompleteForUser(taskId, false);
+                    await updateTaskStatus(taskId, status, token);
+                    // Re-fetch and re-render tasks
+                    const newTasks = await fetchUserTasks(token);
+                    renderKanban(newTasks, token);
+                }
             } catch (err) {
                 alert('Failed to update task status');
             }
