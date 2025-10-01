@@ -91,7 +91,15 @@ export function renderTasks(tasks: Task[], token: string) {
         // Render as plain text by default, switch to input/select on edit
         let editing = false;
         const renderRow = () => {
+            // Assignee cell logic
+            let assigneeCell = '---';
+            if (task.assignedUserIds && task.assignedUserIds.length > 0) {
+                assigneeCell = task.assignedUserIds.length === 1
+                    ? String(task.assignedUserIds[0])
+                    : task.assignedUserIds.join(', ');
+            }
             tr.innerHTML = `
+                <td class="id-cell">${task.id}</td>
                 <td class="title-cell">${editing ? `<input type="text" value="${task.title}" data-field="title" style="width:120px">` : `<span>${task.title}</span>`}</td>
                 <td class="desc-cell">${editing ? `<input type="text" value="${task.description || ''}" data-field="description" style="width:180px">` : `<span>${task.description || ''}</span>`}</td>
                 <td>
@@ -103,7 +111,7 @@ export function renderTasks(tasks: Task[], token: string) {
                         </select>
                     ` : `<span>${task.status.charAt(0).toUpperCase() + task.status.slice(1)}</span>`}
                 </td>
-                <td>${task.assignedUserIds && task.assignedUserIds.length > 0 ? task.assignedUserIds.join(', ') : '---'}</td>
+                <td>${assigneeCell}</td>
                 <td>
                     <button class="edit-btn" style="margin-right:4px;">${editing ? 'Save' : 'Edit'}</button>
                     <button class="delete-btn">Delete</button>
