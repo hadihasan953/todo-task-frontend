@@ -72,6 +72,8 @@ button#goToTaskCreator:hover {
     border-radius: 6px;
     min-height: 300px;
     border: 5px solid #a6c000;
+    overflow: hidden;
+    word-wrap: break-word;
 }
 
 .kanban-column h4 {
@@ -80,6 +82,8 @@ button#goToTaskCreator:hover {
 
 .kanban-list {
     height: 100%;
+    overflow-y: auto;
+    max-height: 100%;
 }
 
 .task-card {
@@ -89,6 +93,10 @@ button#goToTaskCreator:hover {
     border-radius: 4px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
     cursor: grab;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .task-card.dragging {
